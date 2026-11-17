@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Profesional</title>
+    <style>
+      /* Reset dan Font */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background-color: #f9f9f9;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      /* Header & Navigation */
+      header {
+        background: linear-gradient(135deg, #4F6466);
+        color: white;
+        padding: 30px 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      header.scrolled {
+        padding: 15px 0;
+        background: rgba(79, 100, 102, 0.95);
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+      }
+
+      .nav-links li {
+        list-style: none;
+      }
+
+      .nav-links li a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        transition: all 0.3s ease;
+        font-weight: 500;
+      }
+
+      .nav-links li a:hover {
+        color: #64ffda;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 120px 0 80px;
+        background: linear-gradient(135deg, #4F6466, #718385), url("/api/placeholder/1920/1080") center/cover fixed;
+        color: white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        background: url("/api/placeholder/500/500") no-repeat;
+        background-size: cover;
+        opacity: 0.05;
+        animation: subtle-float 8s ease-in-out infinite alternate;
+      }
+
+      @keyframes subtle-float {
+        0% {
+          transform: translateY(0) scale(1);
+        }
+        100% {
+          transform: translateY(-20px) scale(1.05);
+        }
+      }
+
+      .hero-content {
+        max-width: 1000px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-profile {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+      }
+
+      .profile-img {
+        flex-shrink: 0;
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        border: 5px solid #64ffda;
+        overflow: hidden;
+        box-shadow: 0 0 25px rgba(100, 255, 218, 0.5);
+        animation: profileFadeIn 1.5s ease forwards;
+        position: relative;
+      }
+
+      .profile-img::after {
+        content: "";
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        border-radius: 50%;
+        border: 2px solid rgba(100, 255, 218, 0.5);
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.05);
+          opacity: 0.7;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      @keyframes profileFadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(30px) scale(0.9);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .profile-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .profile-img:hover img {
+        transform: scale(1.05);
+      }
+
+      .profile-details {
+        flex: 1;
+      }
+
+      .hero-content h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeUp 1s forwards 0.5s;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        letter-spacing: 1px;
+      }
+
+      .hero-content p {
+        font-size: 1.3rem;
+        margin-bottom: 30px;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeUp 1s forwards 0.8s;
+        letter-spacing: 1px;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .btn {
+        display: inline-block;
+        background-color: #64ffda;
+        color: #333;
+        padding: 14px 35px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        box-shadow: 0 5px 15px rgba(100, 255, 218, 0.4);
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeUp 1s forwards 1.1s;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.2);
+        transition: all 0.4s ease;
+        z-index: -1;
+      }
+
+      .btn:hover {
+        background-color: #4ad6b3;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(100, 255, 218, 0.5);
+      }
+
+      .btn:hover::before {
+        width: 100%;
+      }
+
+      /* About Section */
+      section {
+        padding: 120px 0;
+        position: relative;
+        background: linear-gradient(135deg, #e0f7fa, #ffffff);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(100, 255, 218, 0.2);
+        transition: box-shadow 0.3s ease;
+      }
+
+      section:hover {
+        box-shadow: 0 15px 40px rgba(100, 255, 218, 0.4);
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 70px;
+        font-size: 2.8rem;
+        position: relative;
+        color: #64ffda;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 900;
+        text-shadow: 1px 1px 2px rgba(100, 255, 218, 0.3);
+      }
+
+      .section-title::before {
+        content: attr(data-text);
+        position: absolute;
+        top: -0.6em;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 5rem;
+        font-weight: 800;
+        color: rgba(75, 100, 140, 0.07);
+        width: 100%;
+        text-align: center;
+        z-index: -1;
+      }
+
+      .section-title:after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, #2b5876, #64ffda);
+        border-radius: 2px;
+      }
+
+      .about-content {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 40px;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(100, 255, 218, 0.2);
+        transition: transform 0.3s ease;
+      }
+
+      .about-content:hover {
+        transform: translateY(-10px);
+      }
+
+      .about-text {
+        flex: 1;
+        font-size: 1.1rem;
+        color: #444;
+        line-height: 1.8;
+        padding: 10px 20px;
+        border-left: 4px solid #64ffda;
+        background: linear-gradient(135deg, #f0fdfa, #e0f7fa);
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(100, 255, 218, 0.15);
+      }
+
+      .about-text h3 {
+        font-size: 2rem;
+        margin-bottom: 25px;
+        color: #2b5876;
+        font-weight: 700;
+        text-shadow: 1px 1px 2px rgba(100, 255, 218, 0.3);
+      }
+
+      /* Skills Section */
+      .skills {
+        background: linear-gradient(135deg, #f9f9f9 0%, #f1f1f1 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .skills::before {
+        content: "";
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: linear-gradient(135deg, rgba(43, 88, 118, 0.1), rgba(100, 255, 218, 0.1));
+        border-radius: 50%;
+        top: -100px;
+        right: -100px;
+        z-index: 0;
+      }
+
+      .skills::after {
+        content: "";
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background: linear-gradient(135deg, rgba(43, 88, 118, 0.1), rgba(100, 255, 218, 0.1));
+        border-radius: 50%;
+        bottom: -200px;
+        left: -200px;
+        z-index: 0;
+      }
+
+      .skills-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 40px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .skill-card {
+        background: white;
+        padding: 40px 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        opacity: 0;
+        transform: translateY(20px);
+        border: 1px solid rgba(0, 0, 0, 0.03);
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+      }
+
+      .skill-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, #2b5876, #64ffda);
+        z-index: 2;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.5s ease;
+      }
+
+      .skill-card.animated {
+        animation: fadeUp 0.6s forwards;
+      }
+
+      .skill-card:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .skill-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .skill-icon {
+        font-size: 3.5rem;
+        margin-bottom: 25px;
+        color: #4e4376;
+        height: 80px;
+        width: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, rgba(43, 88, 118, 0.1), rgba(78, 67, 118, 0.1));
+        box-shadow: 0 8px 20px rgba(43, 88, 118, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .skill-card:hover .skill-icon {
+        transform: rotateY(180deg);
+        color: #64ffda;
+      }
+
+      .skill-name {
+        font-size: 1.5rem;
+        margin-bottom: 12px;
+        color: #2b5876;
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+
+      .skill-progress {
+        width: 100%;
+        height: 12px;
+        background-color: #f0f0f0;
+        border-radius: 30px;
+        margin-top: 20px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+
+      .progress-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background: linear-gradient(90deg, #2b5876, #64ffda);
+        width: 0;
+        transition: width 1.8s cubic-bezier(0.19, 1, 0.22, 1);
+        border-radius: 30px;
+        box-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+      }
+
+      .progress-bar::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+        background-size: 20px 20px;
+        animation: progressStripes 1s linear infinite;
+      }
+
+      @keyframes progressStripes {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: 20px 0;
+        }
+      }
+
+      /* Projects Section */
+      .projects-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 40px;
+        padding: 20px 0;
+      }
+
+      .project-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+        transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+        opacity: 0;
+        transform: translateY(20px);
+        border: 1px solid rgba(0, 0, 0, 0.03);
+        position: relative;
+        height: 100%;
+      }
+
+      .project-card.animated {
+        animation: fadeUp 0.6s forwards;
+      }
+
+      .project-card:hover {
+        transform: translateY(-15px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .project-card:hover .project-img {
+        transform: scale(1.1);
+      }
+
+      .project-img-container {
+        height: 250px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .project-img-container::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 30%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .project-card:hover .project-img-container::after {
+        opacity: 1;
+      }
+
+      .project-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .project-info {
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        height: calc(100% - 250px);
+      }
+
+      .project-title {
+        font-size: 1.6rem;
+        margin-bottom: 12px;
+        color: #2b5876;
+        position: relative;
+        display: inline-block;
+      }
+
+      .project-title::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background: linear-gradient(90deg, #2b5876, #64ffda);
+        transition: width 0.3s ease;
+      }
+
+      .project-card:hover .project-title::after {
+        width: 100%;
+      }
+
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+
+      .tag {
+        background: linear-gradient(135deg, rgba(43, 88, 118, 0.1), rgba(78, 67, 118, 0.1));
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        color: #2b5876;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(43, 88, 118, 0.1);
+      }
+
+      .tag:hover {
+        background: linear-gradient(135deg, rgba(43, 88, 118, 0.2), rgba(78, 67, 118, 0.2));
+        transform: translateY(-2px);
+      }
+
+      .project-desc {
+        margin-bottom: 25px;
+        color: #666;
+        line-height: 1.7;
+        flex-grow: 1;
+      }
+
+      .project-links {
+        display: flex;
+        margin-top: auto;
+      }
+
+      .project-link {
+        display: inline-flex;
+        align-items: center;
+        margin-right: 20px;
+        color: #4e4376;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        padding: 8px 0;
+        position: relative;
+      }
+
+      .project-link::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #64ffda;
+        transition: width 0.3s ease;
+      }
+
+      .project-link:hover {
+        color: #64ffda;
+      }
+
+      .project-link:hover::after {
+        width: 100%;
+      }
+
+      .project-link i {
+        margin-left: 5px;
+        transition: transform 0.3s ease;
+      }
+
+      .project-link:hover i {
+        transform: translateX(5px);
+      }
+
+      /* Contact Section */
+      .contact {
+        background: linear-gradient(135deg, #2b5876, #4e4376);
+        color: white;
+      }
+
+      .contact-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 50px;
+      }
+
+      .contact-info h3 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+      }
+
+      .contact-info p {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+      }
+
+      .contact-list {
+        list-style: none;
+      }
+
+      .contact-list li {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .contact-list i {
+        margin-right: 15px;
+        font-size: 1.2rem;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+      }
+
+      .contact-form input::placeholder,
+      .contact-form textarea::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .contact-form textarea {
+        height: 150px;
+        resize: none;
+      }
+
+      .submit-btn {
+        background-color: #64ffda;
+        color: #333;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .submit-btn:hover {
+        background-color: #4ad6b3;
+        transform: translateY(-3px);
+      }
+
+      /* Footer */
+      footer {
+        background-color: #222;
+        color: white;
+        text-align: center;
+        padding: 30px 0;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .social-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        margin: 0 10px;
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .social-links a:hover {
+        background-color: #64ffda;
+        color: #333;
+        transform: translateY(-5px);
+      }
+
+      /* Animation */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .hero-content h1 {
+          font-size: 2.5rem;
+        }
+
+        .about-content {
+          flex-direction: column;
+        }
+
+        .about-img,
+        .about-text {
+          flex: auto;
+          width: 100%;
+        }
+
+        .projects-container {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-container {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .about-content {
+          flex-direction: column;
+          padding: 10px;
+          gap: 20px;
+          max-width: 100%;
+        }
+
+        .about-text {
+          padding: 10px 15px;
+          font-size: 1rem;
+          line-height: 1.6;
+        }
+
+        .hero-profile {
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+        }
+
+        .profile-img {
+          width: 150px;
+          height: 150px;
+          border-width: 3px;
+        }
+
+        .hero-content h1 {
+          font-size: 1.6rem;
+          text-align: center;
+        }
+
+        .hero-content p {
+          font-size: 1rem;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+
+        .btn {
+          padding: 12px 25px;
+          font-size: 0.9rem;
+        }
+
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          background: linear-gradient(135deg, #2b5876, #4e4376);
+          position: absolute;
+          top: 70px;
+          right: 20px;
+          width: 200px;
+          border-radius: 8px;
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+          z-index: 1001;
+        }
+
+        .nav-links.show {
+          display: flex;
+        }
+
+        .nav-links li {
+          margin: 10px 0;
+        }
+
+        .nav-links li a {
+          padding: 10px 20px;
+          display: block;
+        }
+
+        .hamburger {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          width: 25px;
+          height: 25px;
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          z-index: 1002;
+        }
+
+        .hamburger:focus {
+          outline: none;
+        }
+
+        .bar {
+          width: 100%;
+          height: 3px;
+          background-color: white;
+          border-radius: 2px;
+          transition: all 0.3s ease;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+          transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+          opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+          transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  </head>
+  <body>
+    <!-- Header & Navigation -->
+    <header>
+      <div class="container">
+        <nav>
+          <div class="logo">Profile Bekti</div>
+          <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+          <ul class="nav-links" id="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Profile</a></li>
+            <li><a href="#skills">Keahlian</a></li>
+            <li><a href="#projects">Galeri</a></li>
+            <li><a href="#contact">Kontak</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-profile">
+            <div class="profile-img">
+              <img src="assets/WhatsApp Image 2026-10-28 at 13.57.27.jpeg" alt="Foto Profil" />
+            </div>
+            <div class="profile-details">
+              <h1>Halo, Saya <span style="color: #64ffda">Ade Bekti Ramadhan</span></h1>
+              <p>Design Grafis | Network Engineer</p>
+              <a href="#contact" class="btn">Hubungi Saya</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+          <!-- Removed profile photo in about section -->
+          <div class="about-text">
+            <h3>Design Grafis | Network Engineer</h3>
+            <p>Saya Ade Bekti Ramadhan, memiliki minat dalam bidang desain grafis dan network engineering. Desain grafis berfokus pada kreativitas dan komunikasi visual, sedangkan network engineering berfokus pada pengelolaan, konfigurasi, dan pemeliharaan jaringan komputer. Saya ingin terus mengembangkan kemampuan di kedua bidang tersebut agar menjadi pribadi yang kreatif, kompeten, dan mampu mengikuti perkembangan teknologi.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+      <div class="container">
+        <h2 class="section-title">Keahlian</h2>
+        <div class="skills-container">
+          <div class="skill-card">
+            <div class="skill-icon">
+              <i class="fab fa-html5"></i>
+            </div>
+            <h3 class="skill-name">HTML5</h3>
+            <p>Struktur website yang semantik dan bersih</p>
+            <div class="skill-progress">
+              <div class="progress-bar" data-percent="95"></div>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">
+              <i class="fab fa-css3-alt"></i>
+            </div>
+            <h3 class="skill-name">CSS3</h3>
+            <p>Styling yang responsif dan animasi</p>
+            <div class="skill-progress">
+              <div class="progress-bar" data-percent="90"></div>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">
+              <i class="fab fa-js"></i>
+            </div>
+            <h3 class="skill-name">JavaScript</h3>
+            <p>Interaksi dinamis dan validasi data</p>
+            <div class="skill-progress">
+              <div class="progress-bar" data-percent="85"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">Organisasi Sekolah </h2>
+        <div class="projects-container">
+          <div class="project-card">
+            <div class="project-img-container">
+              <img src="assets/WhatsApp Image 2026-10-29 at 14.05.34.jpeg" alt="Project 1" class="project-img" />
+            </div>
+            <div class="project-info">
+              <h3 class="project-title">Kegiatan Sekolah</h3>
+              <div class="project-desc">Salah  satu moments paling berkesan saat kegiatan P5 sekolah</div>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-img-container">
+              <img src="assets/WhatsApp Image 2026-10-29 at 18.20.56.jpeg" alt="Project 2" class="project-img" />
+            </div>
+            <div class="project-info">
+              <h3 class="project-title">Anggota OSIS</h3>
+              <div class="project-desc">Saya pernah menjadi anggota OSIS di sekolah dan berkontribusi dalam mengorganisir berbagai kegiatan.</div>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-img-container">
+              <img src="assets/WhatsApp Image 2026-10-29 at 18.20.57.jpeg" alt="Project 1" class="project-img" />
+            </div>
+            <div class="project-info">
+              <h3 class="project-title">Pengalaman PKL</h3>
+              <div class="project-desc">Saya pernah menjalani PKL di Pusat Teknologi Informasi dan Komunikasi, di Setjen DPR RI</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">MY TRAVELING</h2>
+        <div class="projects-container">
+          <div class="project-card">
+            <div class="project-img-container">
+              <img src="assets/WhatsApp Image 2026-10-29 at 18.40.13 (2).jpeg" alt="Project 1" class="project-img" />
+            </div>
+            <div class="project-info">
+              <h3 class="project-title">Mount Luhur 1750 MDPL</h3>
+              <div class="project-desc">Saya pernah mendaki Gunung Luhur dengan ketinggian 1750 mdpl.</div>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-img-container">
+              <img src="assets/WhatsApp Image 2026-10-29 at 18.40.13.jpeg" alt="Project 2" class="project-img" />
+            </div>
+            <div class="project-info">
+              <h3 class="project-title">Mount Gede 2958 MDPL</h3>
+              <div class="project-desc">Walapun Tracknya cukup menantang, saya berhasil mencapai puncak Gunung Gede.</div>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-img-container">
+              <img src="assets/WhatsApp Image 2026-10-29 at 18.40.13 (1).jpeg" alt="Project 1" class="project-img" />
+            </div>
+            <div class="project-info">
+              <h3 class="project-title">Mount Khayangan 1420 MDPL</h3>
+              <div class="project-desc">Walapun berkabut tetapi sangat seru dan menantang</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="section-title">Hubungi Saya</h2>
+        <div class="contact-container">
+          <div class="contact-info">
+            <h3>Mari Bekerja Sama</h3>
+            <p>Jika Anda tertarik untuk bekerja sama atau memiliki pertanyaan, jangan ragu untuk menghubungi saya.</p>
+            <ul class="contact-list">
+              <li><i class="fas fa-envelope"></i> bekti6044@gmail.com</li>
+              <li><i class="fas fa-phone"></i> +62 895 2484 0328</li>
+              <li><i class="fas fa-map-marker-alt"></i> Bekasi, Indonesia</li>
+            </ul>
+          </div>
+<div class="contact-form">
+  <form id="contactForm">
+    <input type="text" id="name" placeholder="Nama" required />
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="text" id="subject" placeholder="Subjek" />
+    <textarea id="message" placeholder="Pesan" required></textarea>
+    <button type="submit" class="submit-btn">Kirim Pesan</button>
+    <p id="formMessage" style="color: #64ffda; margin-top: 10px;"></p>
+  </form>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/revanza-kevin-ramadhan-732b44364/"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/revanza-kevin"><i class="fab fa-github"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/kevin_gideon_brainly/"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2025 Revanza Kevin Ramadhan. Semua Hak Dilindungi.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Scroll Header Effect
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector("header");
+        if (window.scrollY > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+
+      // Smooth Scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop - 80,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      // Skills Animation
+      const skillCards = document.querySelectorAll(".skill-card");
+      const progressBars = document.querySelectorAll(".progress-bar");
+      const projectCards = document.querySelectorAll(".project-card");
+
+      const animateOnScroll = (elements, className) => {
+        elements.forEach((element) => {
+          const elementPosition = element.getBoundingClientRect().top;
+          const screenPosition = window.innerHeight / 1.2;
+
+          if (elementPosition < screenPosition) {
+            element.classList.add(className);
+            if (element.querySelector(".progress-bar")) {
+              const progressBar = element.querySelector(".progress-bar");
+              const percent = progressBar.getAttribute("data-percent");
+              progressBar.style.width = percent + "%";
+            }
+          }
+        });
+      };
+
+      // Initial check on load
+      window.addEventListener("load", () => {
+        animateOnScroll(skillCards, "animated");
+        animateOnScroll(projectCards, "animated");
+      });
+
+      // Check on scroll
+      window.addEventListener("scroll", () => {
+        animateOnScroll(skillCards, "animated");
+        animateOnScroll(projectCards, "animated");
+      });
+
+      // Hamburger menu toggle
+      const hamburger = document.querySelector(".hamburger");
+      const navLinks = document.querySelector(".nav-links");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navLinks.classList.toggle("show");
+        // Update aria-expanded for accessibility
+        const expanded = hamburger.getAttribute("aria-expanded") === "true" || false;
+        hamburger.setAttribute("aria-expanded", !expanded);
+      });
+    </script>
+    <script>
+      document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const subject = document.getElementById('subject').value.trim();
+        const message = document.getElementById('message').value.trim();
+        const formMessage = document.getElementById('formMessage');
+
+        if (!name || !email || !message) {
+          formMessage.style.color = 'red';
+          formMessage.textContent = 'Mohon isi semua field yang wajib diisi.';
+          return;
+        }
+
+        // Simple email format validation
+        const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+        if (!emailPattern.test(email)) {
+          formMessage.style.color = 'red';
+          formMessage.textContent = 'Format email tidak valid.';
+          return;
+        }
+
+        // Here you can add your email sending logic, e.g., using EmailJS or backend API
+        // For demonstration, we just show a success message
+
+        formMessage.style.color = '#64ffda';
+        formMessage.textContent = 'Pesan berhasil dikirim. Terima kasih!';
+
+        // Reset form
+        this.reset();
+      });
+    </script>
+  </body>
+</html>
